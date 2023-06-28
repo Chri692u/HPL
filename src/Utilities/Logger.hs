@@ -1,9 +1,9 @@
-module Logger where
+module Utilities.Logger where
 
 import Prelude hiding (log)
 import Control.Monad.Writer
 
-import Matrix
+import Math.Matrix
 
 data Entry = Entry
     { message :: String

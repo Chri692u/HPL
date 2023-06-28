@@ -28,9 +28,9 @@ library
   exposed-modules:     Math.Matrix
                        Utilities.Logger
                        
-  build-depends:       base
+  build-depends:       base, mtl, array
 
-executable matrix-logger-exe
+executable matrix-logger
     main-is:          MatrixLogger.hs
     build-depends:    base, HPL
     hs-source-dirs:   examples

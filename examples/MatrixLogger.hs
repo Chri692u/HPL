@@ -1,8 +1,8 @@
 module Main where
 
 import Prelude hiding (log)
-import Matrix
-import Logger
+import Math.Matrix
+import Utilities.Logger
 
 -- Example
 calculation :: Logger ()

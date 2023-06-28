@@ -1,4 +1,4 @@
-module Matrix where
+module Math.Matrix where
 
 import Data.Array
 
@@ -39,7 +39,6 @@ innerProduct f g m1 m2
         getCol m c = [get m r c | r <- [1..rows m]]
 
 instance Num a => Num (Matrix a) where
-    (+) :: Num a => Matrix a -> Matrix a -> Matrix a
     m1 + m2
         | shape m1 /= shape m2 = error "SIZE ERROR: Incompatible sizes for addition" zipWith (+) l1 l2
         | otherwise = reshape r c $ zipWith (+) l1 l2
@@ -48,20 +47,15 @@ instance Num a => Num (Matrix a) where
                   l1 = toList m1
                   l2 = toList m2
 
-    (*) :: Num a => Matrix a -> Matrix a -> Matrix a
     m1 * m2 = innerProduct (+) (*) m1 m2
 
-    fromInteger :: Num a => Integer -> Matrix a
     fromInteger n = Matrix 1 1 (array (ones, ones) [(ones, fromInteger n)])
         where ones = (1,1)
 
-    negate :: Num a => Matrix a -> Matrix a
     negate = fmap negate
 
-    abs :: Num a => Matrix a -> Matrix a
     abs = fmap abs
 
-    signum :: Num a => Matrix a -> Matrix a
     signum = fmap signum
 
 -- Return the shape of the matrix
