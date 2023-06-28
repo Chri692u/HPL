@@ -1,6 +1,10 @@
 # HPL
 An APL-inspired Haskell library for working with linear algebra with logging to LaTeX
 
+# Modules
+1. Matrix
+2. Logger
+
 # Types
 to be written
 
@@ -8,10 +12,10 @@ to be written
 to be implemented
 
 # Logging
-Logging notes, results and calculations can be done with the Logger type and its functions:
-## log  - logs a note and a result string
-## nb   - logs a note with an "NB." tag
-## calc - logs a result with a "Calculation:" tag
+Logging notes, results and calculations can be done with the Logger type and its functions log, nb and calc:
+### log
+### nb
+### calc
 
 
 # Examples
