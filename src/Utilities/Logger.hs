@@ -6,8 +6,8 @@ import Control.Monad.Writer
 import Math.Matrix
 
 data Entry = Entry
-    { message :: String
-    , result :: String
+    { tag :: String
+    , val :: String
     }
 
 instance Show Entry where
