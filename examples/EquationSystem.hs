@@ -12,3 +12,5 @@ main = do
     let (q,r) = decompQR m
     putStrLn "Q:"
     print q
+    putStrLn "R:"
+    print r

@@ -3,6 +3,7 @@
 module Math.Matrix where
 
 import Data.Array
+import Data.Array.Base(amap)
 
 data Matrix a = Matrix
     { rows :: Int
@@ -77,7 +78,7 @@ reshape rows cols vs =
         arr = array bounds indexed
     in Matrix rows cols arr
 
--- Inner product
+-- Inner product algorithm
 innerProduct :: Num a => (a -> a -> a) -> (b -> c -> a) -> Matrix b -> Matrix c -> Matrix a
 innerProduct f g m1 m2
     | cols m1 /= rows m2 = error "SIZE ERROR: Incompatible sizes for inner product"
@@ -87,6 +88,7 @@ innerProduct f g m1 m2
         getRow m r = [get m r c | c <- [1..cols m]]
         getCol m c = [get m r c | r <- [1..rows m]]
 
+-- Transpose a matrix
 transpose :: Matrix a -> Matrix a
 transpose matrix = reshape (cols matrix) (rows matrix) $ transpose' matrix
   where
