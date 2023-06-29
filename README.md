@@ -1,5 +1,5 @@
 # HPL
-An APL-inspired Haskell library for working with linear algebra and probability theory with logging to LaTeX
+A APL-inspired Haskell library for working with linear algebra and probability theory with logging to LaTeX
 
 # Modules
 1. Matrix
