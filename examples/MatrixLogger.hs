@@ -15,7 +15,7 @@ calculation = do
     nb "an all-1 matrix"
     log "ones" ones
 
-    let mixed = reshape 2 2 [-1,0,3,4.0]
+    let mixed = reshape 2 3 [-1,0,3,4.0]
     nb "a matrix with positive, negative and floating point numbers"
     log "mixed" mixed
 
@@ -27,8 +27,8 @@ calculation = do
     log "shape of res:" res1
 
     -- Addition
-    let res2 = id + zeros
-    log "id + zeros:" res2
+    let res2 = id + id
+    log "id + id:" res2
 
     -- Multiplication
     let res3 = id * ones
@@ -47,6 +47,9 @@ calculation = do
     -- Signum of each entry
     log "signum" $ signum mixed
 
+    log "original mixed" mixed
+    
+    log "transposed mixed" $ transpose mixed
 
 -- Main function to run the example
 main :: IO ()
