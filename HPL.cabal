@@ -26,13 +26,19 @@ extra-source-files:
 library
   hs-source-dirs:      src
   exposed-modules:     Math.Matrix, Math.Vector, Math.Algorithm
-                       Utilities.Logger
+                       Utilities.Logger, Utilities.Interactive
                        
   build-depends:       base, mtl, array
 
 executable matrix-logger
     main-is:          MatrixLogger.hs
     build-depends:    base, HPL
+    hs-source-dirs:   examples
+    default-language: Haskell2010
+
+executable matrixIO
+    main-is:          MatrixIO.hs
+    build-depends:    base, array, HPL
     hs-source-dirs:   examples
     default-language: Haskell2010
 
