@@ -25,7 +25,7 @@ extra-source-files:
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Math.Matrix, Math.Vector, Math.Algorithms
+  exposed-modules:     Math.Matrix, Math.Vector, Math.Algorithms, Math.Equation
                        Utilities.Logger, Utilities.Interactive
                        
   build-depends:       base, mtl, array

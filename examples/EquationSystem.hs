@@ -2,15 +2,15 @@ module Main where
 
 import Data.Array
 import Math.Matrix
-import Math.Algorithm
+import Math.Vector
+import Math.Algorithms
+import Math.Equation
 
 main :: IO ()
 main = do
     putStrLn "Solving system:"
-    let m = reshape 2 2 [5,-4,1,2]
-    print m
-    let (q,r) = decompQR m
-    putStrLn "Q:"
-    print q
-    putStrLn "R:"
-    print r
+    let coefficents = reshape 3 3 [1,1,0,1,0,1,0,1,1]
+    let b = fromMatrix $ reshape 1 3 [1,-2,3]
+    let (q,r) = decompQR coefficents
+    let solution = solve (LinearEquation q b)
+    print $ elems solution
