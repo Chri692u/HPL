@@ -10,7 +10,6 @@ decompQR m = (matQ, matR)
   where
     getCol m c = listArray (1, rows m) [get m r c | r <- [1..rows m]]
     columns = [getCol m row | row <- [1..cols m]]
-    qs = gramSchmidt columns []
     matQ = orthogonalize m
     matR = upperTriangular $ transpose matQ * m
 
