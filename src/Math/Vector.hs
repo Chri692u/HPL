@@ -2,7 +2,22 @@ module Math.Vector where
 
 import Data.Array
 
+import Math.Matrix
+
 type Vector a = Array Int a
+
+toMatrix :: Vector a -> Matrix a
+toMatrix vec = Matrix { rows = n, cols = 1, elements = e }
+    where n = length $ elems vec
+          e = array ((1,1), (n,1)) $ zipWith (\i e -> ((i, 1), e)) [1..n] (elems vec)
+
+fromMatrix :: Matrix a -> Vector a
+fromMatrix matrix
+    | cols matrix == 1 = array (1, rows matrix) $ zip [1..] (map (\i -> elements matrix ! (i, 1)) [1..rows matrix])
+    | rows matrix == 1 = array (1, cols matrix) $ zip [1..] (map (\i -> elements matrix ! (1, i)) [1..cols matrix])
+    | otherwise = error "VECTOR LENGTH ERROR"
+
+
 
 -- Function for binary operators on vectors
 binop :: (a -> a -> a) -> Vector a -> Vector a -> Vector a
