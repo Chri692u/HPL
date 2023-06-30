@@ -47,8 +47,8 @@ calculation = do
     -- Signum of each entry
     log "signum" $ signum mixed
 
+    -- Transpose
     log "original mixed" mixed
-    
     log "transposed mixed" $ transpose mixed
 
 -- Main function to run the example
