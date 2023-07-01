@@ -51,6 +51,9 @@ calculation = do
     log "original mixed" mixed
     log "transposed mixed" $ transpose mixed
 
+    -- Concatination
+    log "Concat ones zeros" $ zeros <> ones
+
 -- Main function to run the example
 main :: IO ()
 main = do

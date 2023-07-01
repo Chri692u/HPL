@@ -5,6 +5,8 @@ import Data.Array
 import Math.Matrix
 
 type Vector a = Array Int a
+
+-- Show implementation
 showV :: Show a => Vector a -> String
 showV = unlines . map show . elems
 

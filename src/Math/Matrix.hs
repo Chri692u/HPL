@@ -6,6 +6,8 @@ import Data.Array
 import Data.Array.Base(amap)
 import Data.List
 
+type Row a = (Array Int a)
+
 data Matrix a = Matrix
     { rows :: Int
     , cols :: Int
@@ -73,6 +75,13 @@ instance Semigroup (Matrix a) where
 -- Lookup the value at a specific row and column
 get :: Matrix a -> Int -> Int -> a
 get matrix row col = elements matrix ! (row, col)
+
+asRows :: Matrix a -> Array Int (Row a)
+asRows m = array (1, ncols) [(i, col i) | i <- [1..ncols]]
+    where m' = elements m
+          ncols = cols m
+          nrows = rows m
+          col i = array (1, nrows) [(j, m' ! (j, i)) | j <- [1..nrows]]
 
 -- Convert a matrix to a list
 toList :: Matrix a -> [a]
