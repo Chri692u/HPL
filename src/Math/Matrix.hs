@@ -4,6 +4,7 @@ module Math.Matrix where
 
 import Data.Array
 import Data.Array.Base(amap)
+import Data.List
 
 data Matrix a = Matrix
     { rows :: Int
@@ -11,12 +12,15 @@ data Matrix a = Matrix
     , elements :: Array (Int, Int) a
     }
 
-instance Show a => Show (Matrix a) where
-    show :: Show a => Matrix a -> String
-    show matrix = show $ map (separate matrix) [1..numRows]
-        where numRows = rows matrix
-              numCols = cols matrix
-              separate m r = [get matrix r c | c <- [1..numCols]]
+instance (Show a) => Show (Matrix a) where
+    show :: (Show a) => Matrix a -> String
+    show matrix =
+        let m = elements matrix
+            ((r1, c1), (rn, cn)) = bounds m
+        in unlines
+            [ intercalate "\t" [show $ m ! (r, c) | c <- [c1 .. cn]]
+            | r <- [r1 .. rn]
+            ]
 
 instance Functor Matrix where
     fmap :: (a -> b) -> Matrix a -> Matrix b
@@ -33,7 +37,7 @@ instance Eq a => Eq (Matrix a) where
 instance Num a => Num (Matrix a) where
     (+) :: Num a => Matrix a -> Matrix a -> Matrix a
     m1 + m2
-        | shape m1 /= shape m2 = error "SIZE ERROR: Incompatible sizes for addition" zipWith (+) l1 l2
+        | shape m1 /= shape m2 = error "DIMENSION ERROR" zipWith (+) l1 l2
         | otherwise = reshape r c $ zipWith (+) l1 l2
             where r = rows m1
                   c = cols m1
@@ -55,6 +59,16 @@ instance Num a => Num (Matrix a) where
 
     signum :: Num a => Matrix a -> Matrix a
     signum = fmap signum
+
+instance Semigroup (Matrix a) where
+    (<>) :: Matrix a -> Matrix a -> Matrix a
+    m1 <> m2
+        | rows m1 /= rows m2 = error "DIMENSION ERROR"
+        | otherwise = reshape (rows m1 + cols m2) (cols m1) $ concat $ allRows1 ++ allRows2
+        where
+            getRow m r = [get m r c | c <- [1..cols m]]
+            allRows1 = [getRow m1 row1 | row1 <- [1..rows m1]]
+            allRows2 = [getRow m2 row2 | row2 <- [1..1+rows m2]]
 
 -- Lookup the value at a specific row and column
 get :: Matrix a -> Int -> Int -> a
@@ -93,4 +107,3 @@ transpose :: Matrix a -> Matrix a
 transpose matrix = reshape (cols matrix) (rows matrix) $ transpose' matrix
   where
     transpose' m = [get m c r | r <- [1..cols m], c <- [1..rows m]]
-
