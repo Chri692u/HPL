@@ -26,10 +26,10 @@ extra-source-files:
 library
   hs-source-dirs:      src
   exposed-modules:     Math.Matrix, Math.Vector, Math.Algorithms, Math.Equation
-                       Primitives.Generators
-                       Utilities.Logger, Utilities.Interactive
+                       Primitives.Generators, Primitives.VTransform
+                       Utilities.Logger, Utilities.Vizualize
                        
-  build-depends:       base, mtl, array
+  build-depends:       base, mtl, array, random
 
 executable matrix-logger
     main-is:          MatrixLogger.hs

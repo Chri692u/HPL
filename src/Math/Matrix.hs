@@ -20,7 +20,7 @@ instance (Show a) => Show (Matrix a) where
         let m = elements matrix
             ((r1, c1), (rn, cn)) = bounds m
         in unlines
-            [ intercalate "\t" [show $ m ! (r, c) | c <- [c1 .. cn]]
+            [ intercalate "   " [show $ m ! (r, c) | c <- [c1 .. cn]]
             | r <- [r1 .. rn]
             ]
 
@@ -76,6 +76,7 @@ instance Semigroup (Matrix a) where
 get :: Matrix a -> Int -> Int -> a
 get matrix row col = elements matrix ! (row, col)
 
+-- Convert a matrix to an array of rows
 asRows :: Matrix a -> Array Int (Row a)
 asRows m = array (1, ncols) [(i, col i) | i <- [1..ncols]]
     where m' = elements m
@@ -87,6 +88,7 @@ asRows m = array (1, ncols) [(i, col i) | i <- [1..ncols]]
 toList :: Matrix a -> [a]
 toList matrix = [get matrix r c | r <- [1..rows matrix], c <- [1..cols matrix]]
 
+-- Primitives
 -- Return the shape of the matrix
 shape :: Matrix a -> (Int, Int)
 shape matrix = (rows matrix, cols matrix)

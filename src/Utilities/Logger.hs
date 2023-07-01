@@ -28,5 +28,5 @@ nb :: String -> Logger ()
 nb = log "NB."
 
 -- Log a calculation
-calc :: Show a => a -> Logger ()
+calc :: String -> Logger ()
 calc = log "Calculation:"

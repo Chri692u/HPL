@@ -4,8 +4,9 @@ import Math.Matrix
 import Math.Vector
 import Math.Algorithms
 import Math.Equation
-import Utilities.Interactive
+import Utilities.Vizualize
 
+-- Main function to run the example
 main :: IO ()
 main = do
     let a = reshape 2 2 [1, 1, 1, 6]

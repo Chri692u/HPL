@@ -8,13 +8,18 @@ type Vector a = Array Int a
 
 -- Show implementation
 showV :: Show a => Vector a -> String
-showV = unlines . map show . elems
+showV v = pad $ concatMap (\x -> " " ++ show x ++ " ") $ elems v
+    where pad str = "|" ++ str ++ "|"
 
 -- Convert a vector to a matrix
 toMatrix :: Vector a -> Matrix a
 toMatrix vec = Matrix { rows = n, cols = 1, elements = e }
     where n = length $ elems vec
           e = array ((1,1), (n,1)) $ zipWith (\i e -> ((i, 1), e)) [1..n] (elems vec)
+
+-- Convert a list to a vector
+fromList :: [a] -> Vector a
+fromList xs = listArray (1, length xs) xs
 
 -- Convert a matrix to a vector
 fromMatrix :: Matrix a -> Vector a
@@ -43,22 +48,25 @@ binop f v1 v2
 (*.) :: Num a => Vector a -> Vector a -> Vector a
 (*.) = binop (*)
 
--- dot product of 2 vectors
+-- Vector concatination
+(<.>) :: Vector a -> Vector a -> Vector a
+(<.>) v1 v2 = listArray (1, n) $ xs ++ ys
+  where xs = elems v1
+        ys = elems v2
+        n = length xs + length ys 
+
+-- Dot product of 2 vectors
 dot :: Num a => Array Int a -> Array Int a -> a
 dot v1 v2
-  | bounds v1 /= bounds v2 = error "VECTOR LENGTH ERROR"
-  | otherwise = sum [v1 ! i * v2 ! i | i <- indices v1]
-
--- reverse a vector
-hat :: Vector a -> Vector a
-hat vec = listArray (bounds vec) (reverse (elems vec))
+    | bounds v1 /= bounds v2 = error "VECTOR LENGTH ERROR"
+    | otherwise = sum [v1 ! i * v2 ! i | i <- indices v1]
 
 -- Projection with normalization
 projection :: (Eq a, Fractional a) => Array Int a -> Array Int a -> Array Int a
 projection vec onto
-  | normSq == 0 = error "Cannot project onto a zero vector."
-  | otherwise = listArray (bounds vec) $ map (* scaleFactor) (elems onto)
-  where
-    dp = vec `dot` onto
-    scaleFactor = dp / normSq
-    normSq = onto `dot` onto
+    | normSq == 0 = error "Cannot project onto a zero vector."
+    | otherwise = listArray (bounds vec) $ map (* scaleFactor) (elems onto)
+    where
+      dp = vec `dot` onto
+      scaleFactor = dp / normSq
+      normSq = onto `dot` onto

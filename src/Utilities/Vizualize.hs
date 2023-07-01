@@ -1,4 +1,4 @@
-module Utilities.Interactive where
+module Utilities.Vizualize where
 
 import Data.Array
 
