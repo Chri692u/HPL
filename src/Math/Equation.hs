@@ -2,24 +2,28 @@ module Math.Equation where
 
 import Data.Array
 import Math.Matrix
-import Math.Vector
 import Math.Algorithms
+import Math.Vector
 
 type Solution a = Vector a
+type Row a = (Array Int a)
 
-data LinearEquation a = LinearEquation
-    { coefficient :: Matrix a
-    , rhs :: Vector a
-    }
+solve :: (Num a, Fractional a) => Matrix a -> Vector a -> Solution a
+solve m = backwards (asRows m)
 
--- Backward substitution for solving upper triangular system
-solve :: Fractional a => LinearEquation a -> Vector a
-solve eq = listArray (1, n) $ reverse $ solveRow (reverse $ elems vec) n
+backwards :: (Num a, Fractional a) => Array Int (Row a) -> Vector a -> Solution a
+backwards m b = sol
   where
-    matR = coefficient eq
-    vec = rhs eq
-    n = rows matR
-    solveRow [b] 1 = [b / get matR 1 1]
-    solveRow (b:bs) k = xk : solveRow bs (k - 1)
-      where
-        xk = (b - sum [get matR k j * xj | (j, xj) <- zip [k + 1..n] (solveRow bs (k + 1))]) / get matR k k
+    n = snd $ bounds b
+    sol = array (1,n)
+      [(i,
+        (b ! i - sum [sol ! j * (m ! i ! j) | j <- [i+1..n]]) /
+          m ! i ! i
+      ) | i <- [n,n-1..1]]
+
+asRows :: Matrix a -> Array Int (Row a)
+asRows m = array (1, ncols) [(i, col i) | i <- [1..ncols]]
+    where m' = elements m
+          ncols = cols m
+          nrows = rows m
+          col i = array (1, nrows) [(j, m' ! (j, i)) | j <- [1..nrows]]
