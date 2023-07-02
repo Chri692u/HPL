@@ -14,6 +14,11 @@ main = do
     putStr $ "deal 5 10: " ++ show (deal 5 10)
     putStr $ "primes 1 7: " ++ show (primes 1 7)
     putStrLn ""
+    putStrLn "Matrix transformations:"
+    let original = reshape 3 3 [1..3*3]
+    putStrLn $ "Original matrix:\n" ++ (show $ original)
+    putStrLn $ "Transposed matrix:\n" ++ (show $ transpose original)
+    putStrLn ""
     putStrLn "Vector transformations:"
     let viota = fromMatrix $ iota 5
     putStrLn $ "Vector from list: " ++ showV (fromList [1,2,3])

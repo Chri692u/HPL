@@ -43,3 +43,5 @@ encode :: (Integral a, Show a) => a -> Vector a -> Vector String
 encode b v = listArray (1, tally v) strEncoding
     where strEncoding = map toBase $ elems v
           toBase n = showIntAtBase b intToDigit n ""
+
+-- decode

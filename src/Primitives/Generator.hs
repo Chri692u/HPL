@@ -1,4 +1,4 @@
-module Primitives.Generators where
+module Primitives.Generator where
 
 import Data.Array
 import Data.List (nub)
@@ -32,7 +32,3 @@ primes r c = reshape r c$ sieveList 2 (replicate (n + 1) True)
       | arr !! p = sieveList (p + 1) (markMultiples p arr)
       | otherwise = sieveList (p + 1) arr
     markMultiples p arr = [((i `mod` p) /= 0) && val | (i, val) <- zip [0..] arr]
-
--- matrix:
--- index of
--- unique

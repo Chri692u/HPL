@@ -6,12 +6,6 @@ data LatexDoc = LatexDoc
     , style :: LatexStyle
 }
 
-data FontSize = Small | Medium | Large | Huge
-
-data TexVector = OneSize | Later
-
-data TexMatrix = OneSizeM | LaterM
-
 data LatexStyle = LatexStyle
     { sectionSize :: FontSize
     , bodySize :: FontSize
@@ -19,6 +13,13 @@ data LatexStyle = LatexStyle
     , vectorStyle :: TexVector
     , matrixStyle :: TexMatrix
     }
+
+data FontSize = Small | Medium | Large | Huge
+
+data TexVector = OneSize | Later
+
+data TexMatrix = OneSizeM | LaterM
+
 
 minimalStyle :: LatexStyle
 minimalStyle = LatexStyle
