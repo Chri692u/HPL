@@ -2,7 +2,7 @@ module Main where
 
 import Math.Matrix
 import Math.Vector
-import Primitives.Generators
+import Primitives.Generator
 import Primitives.VTransform
 import Utilities.Vizualize
 
