@@ -27,7 +27,8 @@ library
   hs-source-dirs:      src
   exposed-modules:     Math.Matrix, Math.Vector, Math.Algorithms, Math.Equation
                        Primitives.Generators, Primitives.VTransform
-                       Utilities.Logger, Utilities.Vizualize
+                       Utilities.Logger, Utilities.Vizualize,
+                       Utilities.Latex.Styles, Utilities.Latex.Templates, Utilities.Latex.Pdflatex
                        
   build-depends:       base, mtl, array, random
 
@@ -37,9 +38,15 @@ executable matrix-logger
     hs-source-dirs:   examples
     default-language: Haskell2010
 
+executable vector-logger
+    main-is:          VectorLogger.hs
+    build-depends:    base, HPL
+    hs-source-dirs:   examples
+    default-language: Haskell2010
+
 executable primitives-io
     main-is:          PrimitivesIO.hs
-    build-depends:    base, array, HPL
+    build-depends:    base, HPL
     hs-source-dirs:   examples
     default-language: Haskell2010
 
