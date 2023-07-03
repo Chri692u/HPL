@@ -22,7 +22,7 @@ deal i max
     | otherwise = reshape 1 i randoms
         where randoms = take i $ nub $ randomRs (1, max) rng
 
--- primes
+-- primes SOMETHING WRONG
 primes :: Int -> Int -> Matrix Int
 primes r c = reshape r c$ sieveList 2 (replicate (n + 1) True)
   where

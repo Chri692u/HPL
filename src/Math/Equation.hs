@@ -11,7 +11,7 @@ type Solution a = Vector a
 solve :: (Fractional a, Eq a) => Matrix a -> Vector a -> Solution a
 solve m = backwards (asRows m)
 
--- Solve the equation system by backwards propagation
+-- Solve the equation system by backwards substitution
 backwards :: (Eq a, Fractional a) =>Array Int (Row a) -> Row a -> Solution a
 backwards m b = sol
   where

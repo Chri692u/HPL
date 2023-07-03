@@ -1,9 +1,14 @@
 # HPL
 A APL-inspired Haskell library for working with linear algebra and probability theory with logging to LaTeX
 
+## Requirements
+- Cabal
+- pdflatex
+
 # Modules
-1. Matrix
-2. Logger
+- Math
+- Primitives
+- Utility
 
 # Types
 to be written
@@ -11,12 +16,13 @@ to be written
 # Primitives
 to be implemented
 
-# Logging
-Logging notes, results and calculations can be done with the Logger type and its functions log, nb and calc:
-### log
-### nb
-### calc
-
+# Logging to LaTeX
+## LaTeX Style
+## Using the Logger
 
 # Examples
-1. MatrixLogger.hs - cabal run matrix-logger
+To run the examples, simply run "cabal run *example name"
+1. matrix-logger - Logging calculations on matrices to LaTeX
+2. vector-logger - Logging calculations on vectors to LaTeX
+3. equation-system - Solve a system of linear equations
+4. primitives-io - Show basic examples for all primitives
