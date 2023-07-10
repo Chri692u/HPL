@@ -24,7 +24,7 @@ deal i max
 
 -- primes SOMETHING WRONG
 primes :: Int -> Int -> Matrix Int
-primes r c = reshape r c$ sieveList 2 (replicate (n + 1) True)
+primes r c = reshape r c $ sieveList 2 (replicate (n + 1) True)
   where
     n = r * c
     sieveList p arr
