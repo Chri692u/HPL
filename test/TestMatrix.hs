@@ -3,14 +3,13 @@
 module TestMatrix where
 
 import Test.QuickCheck
-import Test.QuickCheck.Arbitrary
 import Math.Matrix
 
 instance Arbitrary a => Arbitrary (Matrix a) where
     arbitrary = do
         size <- choose (1, 10)  -- You can adjust the range of the square matrix size.
-        elements <- vectorOf (size * size) arbitrary
-        return $ reshape size size elements
+        es <- vectorOf (size * size) arbitrary
+        return $ reshape size size es
 
 
 -- Property: Transposing twice yields the original matrix.
