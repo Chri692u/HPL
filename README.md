@@ -10,14 +10,10 @@ A APL-inspired Haskell library for working with linear algebra and probability t
 - Primitives
 - Utility
 
-# Types
-to be written
-
-# Primitives
-to be implemented
+# Documentation
 
 # Logging to LaTeX
-## LaTeX Style
+## LaTeX Styles
 ## Using the Logger
 
 # Examples
@@ -26,3 +22,6 @@ To run the examples, simply run "cabal run *example name*"
 2. vector-logger - Logging calculations on vectors to LaTeX
 3. equation-system - Solve a system of linear equations
 4. primitives-io - Show basic examples for all primitives
+
+# Tests
+to be written about
